@@ -8,11 +8,13 @@ const increaseButton = document.getElementById('increaseButton');
 
 let prompts = [];
 const icons = [
-    { file: '1.svg', color: '#FF5733' },
-    { file: '2.svg', color: '#33A1FF' },
-    { file: '3.svg', color: '#33FF57' },
-    { file: '4.svg', color: '#FF33A1' },
-    { file: '5.svg', color: '#A133FF' }
+    { file: '1.svg', color: '#FF0000' },
+    { file: '2.svg', color: '#0000FF' },
+    { file: '3.svg', color: '#00FF00' },
+    { file: '4.svg', color: '#FF00FF' },
+    { file: '5.svg', color: '#8B008B' },
+    { file: '6.svg', color: '#FFA500' },
+    { file: '7.svg', color: '#00FFFF' },
 ];
 
 let prevStates = [];

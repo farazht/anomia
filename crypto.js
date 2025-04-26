@@ -1,4 +1,3 @@
-// --- Helper: xmur3 hash function ---
 function xmur3(str) {
     let h = 1779033703 ^ str.length;
     for (let i = 0; i < str.length; i++) {
@@ -12,7 +11,6 @@ function xmur3(str) {
     }
 }
 
-// --- Helper: sfc32 PRNG ---
 function sfc32(a, b, c, d) {
     return function() {
         a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
@@ -27,7 +25,6 @@ function sfc32(a, b, c, d) {
     }
 }
 
-// --- Helper: Fisher–Yates Shuffle ---
 function shuffle(array, rand) {
     let m = array.length;
     while (m) {
@@ -37,25 +34,16 @@ function shuffle(array, rand) {
     return array;
 }
 
-// --- Main: assignPrompts function ---
 function assignPrompts(totalPrompts, totalPlayers, playerNumber, seedStr) {
     if (playerNumber < 1 || playerNumber > totalPlayers) {
         throw new Error("Invalid player number.");
     }
-    
-    // 1) Create PRNG
     const seedFn = xmur3(seedStr);
-    const rand   = sfc32(seedFn(), seedFn(), seedFn(), seedFn());
-
-    // 2) Create and shuffle array of prompt IDs
+    const rand = sfc32(seedFn(), seedFn(), seedFn(), seedFn());
     const ids = shuffle(Array.from({length: totalPrompts}, (_, i) => i), rand);
-
-    // 3) Split into nearly-equal chunks
     const baseSize = Math.floor(totalPrompts / totalPlayers);
     const remainder = totalPrompts % totalPlayers;
-
     const offset = (playerNumber - 1) * baseSize + Math.min(playerNumber - 1, remainder);
-    const size   = baseSize + (playerNumber <= remainder ? 1 : 0);
-
+    const size = baseSize + (playerNumber <= remainder ? 1 : 0);
     return ids.slice(offset, offset + size);
 }
