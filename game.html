@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anomia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicon.ico">
+</head>
+<body class="game-body">
+    <div class="container">
+        <div class="title-box">
+            <div class="title">PLAYER <b id="playerNum">1</b> OF <b id="totalPlayers">2</b></div>
+        </div>
+        
+        <div class="card">
+            <div id="topPrompt" class="prompt rotated">TOP PROMPT</div>
+            <div id="iconContainer" class="icon-container"></div>
+            <div id="bottomPrompt" class="prompt">BOTTOM PROMPT</div>
+        </div>
+        
+        <div class="bottom-boxes">
+            <div class="score-box">
+                <div class="score-controls">
+                    <img id="decreaseButton" src="assets/minus.svg" alt="Decrease" class="icon">
+                    <div id="scoreCounter" class="score">0 POINTS</div>
+                    <img id="increaseButton" src="assets/plus.svg" alt="Increase" class="icon">
+                </div>
+            </div>
+            <div class="ditch-box" id="prevButton">
+                <div class="ditch-text">DITCH CARD</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="crypto.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

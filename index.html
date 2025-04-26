@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anomia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="setup-box">
+            <h2 class="setup-title">SETTINGS</h1>
+            
+            <div class="setup-form">
+                <div class="input-group">
+                    <label for="playerCount">Enter total number of players:</label>
+                    <input type="number" id="playerCount" min="1" max="10" value="2">
+                </div>
+                
+                <div class="input-group">
+                    <label for="playerNumber">Assign each player a unique number between <b>[1]</b> and <b>[TOTAL NUMBER OF PLAYERS]</b>.<br><br>Enter your number:</label>
+                    <input type="number" id="playerNumber" min="1" max="2" value="1">
+                </div>
+
+                <div class="input-group">
+                    <label for="seed">Enter a seed for this game - this can be <b>anything you want. All players must use the same seed, and I recommend you change the seed after each game.</b> This is to ensure that all players are assigned a unique but non-overlapping set of prompts.</label>
+                    <input type="text" id="seed" value="xyz">
+                </div>
+
+                <div class="credits-box">
+                    Please read carefully and coordinate with the other players to ensure that you've filled in the correct values. Only the second input box should differ between players.
+                </div>
+            </div>
+
+            <h2 class="setup-title">RULES</h2>
+
+            <div class="rules-box">
+                <ul class="rules-list">
+                    <li>Take turns tapping on the colored card to draw new prompts.</li>
+                    <li>When two players have matching icons, the player who names something in the other person's category first wins a point.</li>
+                    <li>The winner of this 1v1 gets a point (press <b>[+]</b>). Both players then press <b>[DITCH CARD]</b> to remove the card from the game.</li>
+                    <li>The minus button <b>[-]</b> decreases the score by 1. This is only for correcting mistakes, and doesn't have a purpose in the game.</li>
+                </ul>
+            </div>
+
+            <h2 class="setup-title">CREDITS</h2>
+
+            <div class="credits-box">
+                This is an online version of the card game <a href="https://www.anomiapress.com/">Anomia</a>, designed by Andrew Innes and published by Anomia Press. 
+            </div>
+
+            <br><br>
+            <button id="beginButton" class="begin-button">BEGIN GAME</button>
+        </div>
+    </div>
+
+    <script src="setup.js"></script>
+</body>
+</html> 
