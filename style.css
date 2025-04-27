@@ -135,6 +135,32 @@ body {
 
 .title {
     font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.font-size-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.font-size-option {
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.font-size-option:hover {
+    background-color: #e0e0e0;
+}
+
+.font-size-option.active {
+    background-color: #d0d0d0;
+    font-weight: bold;
 }
 
 .title a {
@@ -196,6 +222,26 @@ body {
 
 .points-box {
     border-right: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.minus-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.minus-button:hover {
+    background-color: #e0e0e0;
+}
+
+.minus-button:active {
+    background-color: #d0d0d0;
 }
 
 .action-button {

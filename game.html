@@ -10,7 +10,15 @@
 <body class="game-body">
     <div class="container">
         <div class="title-box">
-            <div class="title">PLAYER <b id="playerNum">1</b> OF <b id="totalPlayers">2</b></div>
+            <div class="title">
+                <span class="font-size-selector">
+                    FONT: 
+                    <span class="font-size-option" data-size="1.5">S</span>
+                    <span class="font-size-option" data-size="2.5">M</span>
+                    <span class="font-size-option" data-size="3.5">L</span>
+                    <span class="font-size-option" data-size="4.5">XL</span>
+                </span>
+            </div>
         </div>
         
         <div class="card">
@@ -25,6 +33,7 @@
             </div>
             <div class="points-box">
                 <div id="scoreCounter" class="score">0 POINTS</div>
+                <div id="decreaseScore" class="minus-button action-button">−</div>
             </div>
             <div id="prevButton" class="ditch-box action-button">
                 LOSE (DISCARD)

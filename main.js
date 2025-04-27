@@ -4,6 +4,8 @@ const bottomPrompt = document.getElementById('bottomPrompt');
 const scoreCounter = document.getElementById('scoreCounter');
 const wonShowoffButton = document.getElementById('wonShowoff');
 const prevButton = document.getElementById('prevButton');
+const decreaseScoreButton = document.getElementById('decreaseScore');
+const fontSizeOptions = document.querySelectorAll('.font-size-option');
 
 let prompts = [];
 const icons = [
@@ -65,7 +67,7 @@ async function updateDisplay(state) {
 async function updateGame() {
     if (prompts.length === 0) {
         document.querySelector('.card').style.backgroundColor = '#f5f5f5';
-        topPrompt.textContent = bottomPrompt.textContent = "Out of Cards";
+        topPrompt.textContent = bottomPrompt.textContent = "OUT OF CARDS";
         iconContainer.innerHTML = '';
         return;
     }
@@ -116,8 +118,6 @@ function getUrlParams() {
         return false;
     }
     
-    document.getElementById('playerNum').textContent = playerNumber;
-    document.getElementById('totalPlayers').textContent = totalPlayers;
     console.log(`Player ${playerNumber} of ${totalPlayers} players`);
     return true;
 }
@@ -151,6 +151,30 @@ wonShowoffButton.addEventListener('click', () => {
     updateScoreDisplay();
 });
 
+decreaseScoreButton.addEventListener('click', () => {
+    score = Math.max(0, score - 1);
+    updateScoreDisplay();
+});
+
 prevButton.addEventListener('click', goToPreviousCard);
+
+// Font size selection
+fontSizeOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Remove active class from all options
+        fontSizeOptions.forEach(opt => opt.classList.remove('active'));
+        // Add active class to clicked option
+        option.classList.add('active');
+        // Set the font size
+        const size = option.dataset.size;
+        topPrompt.style.fontSize = size + 'em';
+        bottomPrompt.style.fontSize = size + 'em';
+    });
+});
+
+// Set default font size (M)
+document.querySelector('.font-size-option[data-size="2.5"]').classList.add('active');
+topPrompt.style.fontSize = '2.5em';
+bottomPrompt.style.fontSize = '2.5em';
 
 init();
