@@ -153,7 +153,7 @@ body {
 }
 
 .prompt {
-    font-size: 2.5rem;
+    font-size: 5rem;
     font-weight: bold;
     text-align: center;
     padding: 1rem;
@@ -182,37 +182,40 @@ body {
     display: flex;
 }
 
-.score-box, .ditch-box {
+.score-box, .points-box, .ditch-box {
     padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 33.33%;
 }
 
 .score-box {
-    width: 66%;
     border-right: 3px solid black;
 }
 
-.ditch-box {
-    width: 34%;
-    cursor: pointer;
+.points-box {
+    border-right: 3px solid black;
 }
 
-.score-controls {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.icon {
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-}
-
-.score, .ditch-text {
+.action-button {
     font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-button:hover {
+    background-color: #e0e0e0;
+}
+
+.action-button:active {
+    background-color: #d0d0d0;
+}
+
+.score {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
 @media (max-width: 768px) {
@@ -231,7 +234,7 @@ body {
     }
     
     .prompt { 
-        font-size: 2rem; 
+        font-size: 4rem; 
     }
     
     .icon-container svg { 

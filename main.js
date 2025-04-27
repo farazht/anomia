@@ -2,19 +2,18 @@ const iconContainer = document.getElementById('iconContainer');
 const topPrompt = document.getElementById('topPrompt');
 const bottomPrompt = document.getElementById('bottomPrompt');
 const scoreCounter = document.getElementById('scoreCounter');
+const wonShowoffButton = document.getElementById('wonShowoff');
 const prevButton = document.getElementById('prevButton');
-const decreaseButton = document.getElementById('decreaseButton');
-const increaseButton = document.getElementById('increaseButton');
 
 let prompts = [];
 const icons = [
-    { file: '1.svg', color: '#FF0000' },
-    { file: '2.svg', color: '#0000FF' },
-    { file: '3.svg', color: '#00FF00' },
-    { file: '4.svg', color: '#FF00FF' },
-    { file: '5.svg', color: '#8B008B' },
-    { file: '6.svg', color: '#FFA500' },
-    { file: '7.svg', color: '#00FFFF' },
+    { file: '1.svg', color: '#E6A30D' },
+    { file: '2.svg', color: '#56B4E9' },
+    { file: '3.svg', color: '#0BAD81' },
+    { file: '4.svg', color: '#E4DA4F' },
+    { file: '5.svg', color: '#4878DE' },
+    { file: '6.svg', color: '#E0721B' },
+    { file: '7.svg', color: '#CC72A4' },
 ];
 
 let prevStates = [];
@@ -100,6 +99,10 @@ async function goToPreviousCard() {
 
 function updateScore(change) {
     score = Math.max(0, score + change);
+    updateScoreDisplay();
+}
+
+function updateScoreDisplay() {
     scoreCounter.textContent = score + (score === 1 ? " POINT" : " POINTS");
 }
 
@@ -119,16 +122,35 @@ function getUrlParams() {
     return true;
 }
 
+async function showStartMessage() {
+    topPrompt.textContent = bottomPrompt.textContent = "TAP TO DRAW";
+    iconContainer.innerHTML = '';
+    document.querySelector('.card').style.backgroundColor = '#f5f5f5';
+}
+
 async function init() {
     if (!getUrlParams()) return;
     
     await fetchPrompts();
-    await updateGame();
+    await showStartMessage();
+    
+    // Add a one-time click event to start the game
+    const startGame = async () => {
+        await updateGame();
+        // Remove this one-time event listener
+        iconContainer.removeEventListener('click', startGame);
+        // Add the regular game update event listener
+        iconContainer.addEventListener('click', updateGame);
+    };
+    
+    iconContainer.addEventListener('click', startGame);
 }
 
-iconContainer.addEventListener('click', updateGame);
+wonShowoffButton.addEventListener('click', () => {
+    score++;
+    updateScoreDisplay();
+});
+
 prevButton.addEventListener('click', goToPreviousCard);
-decreaseButton.addEventListener('click', () => updateScore(-1));
-increaseButton.addEventListener('click', () => updateScore(1));
 
 init();
