@@ -12,16 +12,13 @@
         <div class="title-box">
             <div class="title">
                 <span class="font-size-selector">
-                    FONT: 
-                    <span class="font-size-option" data-size="1.5">S</span>
-                    <span class="font-size-option" data-size="2.5">M</span>
-                    <span class="font-size-option" data-size="3.5">L</span>
-                    <span class="font-size-option" data-size="4.5">XL</span>
+                    FONT SIZE:
+                    <input type="range" id="fontSizeSlider" min="0.5" max="7" step="0.25" value="2.5" class="font-slider">
                 </span>
             </div>
         </div>
         
-        <div class="card">
+        <div class="card action-button">
             <div id="topPrompt" class="prompt rotated">TOP PROMPT</div>
             <div id="iconContainer" class="icon-container"></div>
             <div id="bottomPrompt" class="prompt">BOTTOM PROMPT</div>
@@ -29,14 +26,16 @@
         
         <div class="bottom-boxes">
             <div id="wonShowoff" class="score-box action-button">
-                WIN (+1)
+                WIN <span class="normal-weight">(+1)</span>
             </div>
             <div class="points-box">
-                <div id="scoreCounter" class="score">0 POINTS</div>
-                <div id="decreaseScore" class="minus-button action-button">−</div>
+                <div class="score-container">
+                    <div id="scoreCounter" class="score">0 POINTS</div>
+                    <div id="decreaseScore" class="minus-button"><span class="normal-weight">−1</span></div>
+                </div>
             </div>
             <div id="prevButton" class="ditch-box action-button">
-                LOSE (DISCARD)
+                LOSE <span class="normal-weight">(DISCARD)</span>
             </div>
         </div>
     </div>

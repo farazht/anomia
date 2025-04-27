@@ -5,17 +5,18 @@ const scoreCounter = document.getElementById('scoreCounter');
 const wonShowoffButton = document.getElementById('wonShowoff');
 const prevButton = document.getElementById('prevButton');
 const decreaseScoreButton = document.getElementById('decreaseScore');
-const fontSizeOptions = document.querySelectorAll('.font-size-option');
+const fontSizeSlider = document.getElementById('fontSizeSlider');
+const card = document.querySelector('.card');
 
 let prompts = [];
 const icons = [
-    { file: '1.svg', color: '#E6A30D' },
-    { file: '2.svg', color: '#56B4E9' },
-    { file: '3.svg', color: '#0BAD81' },
-    { file: '4.svg', color: '#E4DA4F' },
-    { file: '5.svg', color: '#4878DE' },
-    { file: '6.svg', color: '#E0721B' },
-    { file: '7.svg', color: '#CC72A4' },
+    { file: '1.svg', color: '#e66aa1' },
+    { file: '2.svg', color: '#a0d045' },
+    { file: '3.svg', color: '#c970e0' },
+    { file: '4.svg', color: '#6cd08e' },
+    { file: '5.svg', color: '#e76d54' },
+    { file: '6.svg', color: '#8093e5' },
+    { file: '7.svg', color: '#cea94a' },
 ];
 
 let prevStates = [];
@@ -27,16 +28,13 @@ async function fetchPrompts() {
     const response = await fetch('prompts.json');
     allPrompts = await response.json();
     
-    // Get player parameters from URL
     const params = new URLSearchParams(window.location.search);
     const playerNumber = parseInt(params.get('player'));
     const totalPlayers = parseInt(params.get('total'));
     const seed = params.get('seed') || 'anomia2023';
     
-    // Use the crypto.js function to assign prompts
     const promptIndices = assignPrompts(allPrompts.length, totalPlayers, playerNumber, seed);
     
-    // Convert indices to actual prompts
     prompts = promptIndices.map(index => allPrompts[index]);
     
     console.log(`Player ${playerNumber} has ${prompts.length} unique prompts using seed "${seed}"`);
@@ -134,16 +132,13 @@ async function init() {
     await fetchPrompts();
     await showStartMessage();
     
-    // Add a one-time click event to start the game
     const startGame = async () => {
         await updateGame();
-        // Remove this one-time event listener
-        iconContainer.removeEventListener('click', startGame);
-        // Add the regular game update event listener
-        iconContainer.addEventListener('click', updateGame);
+        card.removeEventListener('click', startGame);
+        card.addEventListener('click', updateGame);
     };
     
-    iconContainer.addEventListener('click', startGame);
+    card.addEventListener('click', startGame);
 }
 
 wonShowoffButton.addEventListener('click', () => {
@@ -158,23 +153,15 @@ decreaseScoreButton.addEventListener('click', () => {
 
 prevButton.addEventListener('click', goToPreviousCard);
 
-// Font size selection
-fontSizeOptions.forEach(option => {
-    option.addEventListener('click', () => {
-        // Remove active class from all options
-        fontSizeOptions.forEach(opt => opt.classList.remove('active'));
-        // Add active class to clicked option
-        option.classList.add('active');
-        // Set the font size
-        const size = option.dataset.size;
-        topPrompt.style.fontSize = size + 'em';
-        bottomPrompt.style.fontSize = size + 'em';
+if (fontSizeSlider) {
+    fontSizeSlider.addEventListener('input', () => {
+        const size = fontSizeSlider.value;
+        if (topPrompt) topPrompt.style.fontSize = size + 'em';
+        if (bottomPrompt) bottomPrompt.style.fontSize = size + 'em';
     });
-});
 
-// Set default font size (M)
-document.querySelector('.font-size-option[data-size="2.5"]').classList.add('active');
-topPrompt.style.fontSize = '2.5em';
-bottomPrompt.style.fontSize = '2.5em';
+    topPrompt.style.fontSize = '2.5em';
+    bottomPrompt.style.fontSize = '2.5em';
+}
 
 init();

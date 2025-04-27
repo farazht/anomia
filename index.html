@@ -24,12 +24,13 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="seed">Enter a seed for this game - this can be <b>anything you want. All players must use the same seed, and I recommend you change the seed after each game.</b> This is to ensure that all players are assigned a unique but non-overlapping set of prompts.</label>
-                    <input type="text" id="seed" value="xyz">
-                </div>
-
-                <div class="credits-box">
-                    Please read carefully and coordinate with the other players to ensure that you've filled in the correct values. Only the second input box should differ between players.
+                    <label for="seed">Below is the seed for this game - <b>ensure all players have the same seed.</b> I recommend you come here and press the refresh button after each game.</label>
+                    <div class="seed-container">
+                        <input type="text" id="seed" value="">
+                        <button id="refreshSeed" class="refresh-button" title="Generate new seed">
+                            <img src="assets/refresh.svg" alt="Refresh" width="16" height="16">
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -39,7 +40,7 @@
                 <ul class="rules-list">
                     <li>Take turns tapping on the colored card to draw new prompts.</li>
                     <li>When two players have matching icons, the player who names something in the other person's category first wins a point.</li>
-                    <li>The winner of this 1v1 gets a point (press <b>[+]</b>). Both players then press <b>[DITCH CARD]</b> to remove the card from the game.</li>
+                    <li>The winner of this 1v1 gets a point (press <b>[WIN]</b>). The loser discards their top card by pressing <b>[LOSE]</b>.</li>
                     <li>The minus button <b>[-]</b> decreases the score by 1. This is only for correcting mistakes, and doesn't have a purpose in the game.</li>
                 </ul>
             </div>
