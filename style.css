@@ -348,6 +348,7 @@ body {
     height: 20px;
 }
 
+/* mobile settings */
 @media (max-width: 768px) {
     .container, .setup-container {
         width: calc(100% - 1rem);

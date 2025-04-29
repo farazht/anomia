@@ -1,4 +1,3 @@
-// Function to generate a hash from a string using SHA-256
 async function hashString(str) {
     const msgBuffer = new TextEncoder().encode(str);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -6,10 +5,8 @@ async function hashString(str) {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('').substring(0, 8);
 }
 
-// Function to generate seed from UTC time (rounded to minute)
 function generateTimeBasedSeed() {
     const now = new Date();
-    // Round to minute by setting seconds and milliseconds to 0
     now.setSeconds(0, 0);
     const utcString = now.toUTCString();
     return hashString(utcString);
@@ -44,10 +41,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     });
     
-    // Set initial seed based on UTC time
     seedInput.value = await generateTimeBasedSeed();
     
-    // Handle refresh button click
     refreshButton.addEventListener('click', async function() {
         seedInput.value = await generateTimeBasedSeed();
     });

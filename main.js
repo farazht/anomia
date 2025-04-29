@@ -31,13 +31,11 @@ async function fetchPrompts() {
     const params = new URLSearchParams(window.location.search);
     const playerNumber = parseInt(params.get('player'));
     const totalPlayers = parseInt(params.get('total'));
-    const seed = params.get('seed') || 'anomia2023';
+    const seed = params.get('seed') || 'xyz123';
     
     const promptIndices = assignPrompts(allPrompts.length, totalPlayers, playerNumber, seed);
     
     prompts = promptIndices.map(index => allPrompts[index]);
-    
-    console.log(`Player ${playerNumber} has ${prompts.length} unique prompts using seed "${seed}"`);
 }
 
 function getRandom(arr) {
@@ -116,7 +114,6 @@ function getUrlParams() {
         return false;
     }
     
-    console.log(`Player ${playerNumber} of ${totalPlayers} players`);
     return true;
 }
 
